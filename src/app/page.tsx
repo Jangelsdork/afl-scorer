@@ -1,11 +1,19 @@
 'use client'
-import NewGame from "./NewGame"
+
 import { useState } from "react"
+import NewGame from "./components/NewGame"
+
+type Game = {
+  periods: number;
+  length: number;
+  teamA: string;
+  teamB: string;
+}
 
 export default function Home() {
 
 const [buttonClick, setButtonClick] = useState<boolean>(false)
-
+const [gameSetup, setGameSetup] = useState<Game>()
 
 
   return (
