@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import NewGame from "./components/NewGame"
+import GameSetup from "./components/GameSetup";
 
 type Game = {
   periods: number;
@@ -19,7 +20,8 @@ const [gameSetup, setGameSetup] = useState<Game>()
   return (
   <div className="flex flex-col items-center bg-green-300 h-screen">
     <h1 className="text-center text-3xl m-5">AFLG Game Manager Tool</h1>
-    <NewGame buttonClick={buttonClick} setButtonClick={setButtonClick} />
+    {/* <NewGame buttonClick={buttonClick} setButtonClick={setButtonClick} /> */}
+    <GameSetup setGameSetup={setGameSetup}/> 
   </div>
   )
 }
