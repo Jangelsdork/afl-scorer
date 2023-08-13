@@ -1,11 +1,13 @@
+import React from "react";
 import { Game } from "../page";
+import { FormEvent } from "react";
 
 type Props = {
     gameSetup: Game
-    setGameSetup: Game
+    setGameSetup: React.Dispatch<React.SetStateAction<Game>>
 }
 
-function GameSetup({setGameSetup, gameSetup}) {
+function GameSetup({setGameSetup, gameSetup} : Props) {
 
 
 

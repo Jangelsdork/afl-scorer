@@ -1,12 +1,18 @@
 import { useTimer } from "react-timer-hook";
+import { Game } from "../page";
 
 type Props = {
     expiryTimestamp: Date;
     setCurrentInterval: React.Dispatch<React.SetStateAction<number>>;
-    currentInterval: Number
+    currentInterval: Number;
+    gameSetup: Game
 }
 
-export default function Timer({ expiryTimestamp, setCurrentInterval, currentInterval } : Props) {
+export default function Timer({ expiryTimestamp, setCurrentInterval, currentInterval, gameSetup } : Props) {
+    const lengthOfPeriod : number = gameSetup.length * 60; 
+    const time = new Date();
+        time.setSeconds(time.getSeconds() + lengthOfPeriod);
+    console.log(lengthOfPeriod)
   const {
     totalSeconds,
     seconds,
@@ -18,7 +24,11 @@ export default function Timer({ expiryTimestamp, setCurrentInterval, currentInte
     pause,
     resume,
     restart,
-  } = useTimer({ autoStart: false, expiryTimestamp, onExpire: () => setCurrentInterval(currentInterval+1) });
+  } = useTimer({ autoStart: false, expiryTimestamp, onExpire: () => {
+    setCurrentInterval(currentInterval + 1);
+    restart(time)
+ }
+ });
 
 
   return (

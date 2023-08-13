@@ -24,7 +24,7 @@ const [currentInterval, setCurrentInterval] = useState<number>(1)
     <h1 className="text-center text-3xl m-5">AFLG Game Manager Tool</h1>
     {/* <NewGame buttonClick={buttonClick} setButtonClick={setButtonClick} /> */}
     <GameSetup setGameSetup={setGameSetup} gameSetup={gameSetup}/>
-    <GameRun gameSetup={gameSetup} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval} />
+    <GameRun gameSetup={gameSetup} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval}/>
   </div>
   )
 }

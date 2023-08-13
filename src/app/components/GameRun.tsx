@@ -21,7 +21,7 @@ const GameRun = ({gameSetup, setCurrentInterval, currentInterval}: Props) => {
     return (
     <div>
         <h1 className='text-center font-medium text-lg'>Q{currentInterval}</h1>
-        <Timer expiryTimestamp={time} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval}/>
+        <Timer expiryTimestamp={time} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval} gameSetup={gameSetup}/>
     </div>
   )
     }
