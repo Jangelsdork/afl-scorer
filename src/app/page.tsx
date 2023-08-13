@@ -3,8 +3,9 @@
 import { useState } from "react"
 import NewGame from "./components/NewGame"
 import GameSetup from "./components/GameSetup";
+import GameRun from "./components/GameRun";
 
-type Game = {
+export type Game = {
   periods: number;
   length: number;
   teamA: string;
@@ -13,15 +14,17 @@ type Game = {
 
 export default function Home() {
 
-const [buttonClick, setButtonClick] = useState<boolean>(false)
+// const [buttonClick, setButtonClick] = useState<boolean>(false)
 const [gameSetup, setGameSetup] = useState<Game>()
+const [currentInterval, setCurrentInterval] = useState<number>(1)
 
 
   return (
   <div className="flex flex-col items-center bg-green-300 h-screen">
     <h1 className="text-center text-3xl m-5">AFLG Game Manager Tool</h1>
     {/* <NewGame buttonClick={buttonClick} setButtonClick={setButtonClick} /> */}
-    <GameSetup setGameSetup={setGameSetup}/> 
+    <GameSetup setGameSetup={setGameSetup} gameSetup={gameSetup}/>
+    <GameRun gameSetup={gameSetup} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval} />
   </div>
   )
 }
