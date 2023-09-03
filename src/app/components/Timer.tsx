@@ -33,7 +33,7 @@ export default function Timer({ expiryTimestamp, setCurrentInterval, currentInte
 
 
   return (
-    <div className="text-center w-10">
+    <div className="text-center">
       <p>Time remaining in period:</p>
       <div style={{fontSize: '100px'}}>
         <span>{minutes}</span>:<span>{seconds}</span>
