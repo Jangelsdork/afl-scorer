@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import { Game } from '../page'
 import Timer from './Timer'
+import TeamScorer from './TeamScorer'
 
 
 
@@ -22,6 +23,7 @@ const GameRun = ({gameSetup, setCurrentInterval, currentInterval}: Props) => {
     <div>
         <h1 className='text-center font-medium text-lg'>Q{currentInterval}</h1>
         <Timer expiryTimestamp={time} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval} gameSetup={gameSetup}/>
+        <TeamScorer gameSetup={gameSetup}/>
     </div>
   )
     }

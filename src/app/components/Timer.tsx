@@ -1,10 +1,11 @@
 import { useTimer } from "react-timer-hook";
 import { Game } from "../page";
+import React from "react";
 
 type Props = {
     expiryTimestamp: Date;
     setCurrentInterval: React.Dispatch<React.SetStateAction<number>>;
-    currentInterval: Number;
+    currentInterval: number;
     gameSetup: Game
 }
 
@@ -32,8 +33,7 @@ export default function Timer({ expiryTimestamp, setCurrentInterval, currentInte
 
 
   return (
-    <div style={{textAlign: 'center'}}>
-      {/* <h1>react-timer-hook </h1> */}
+    <div className="text-center w-10">
       <p>Time remaining in period:</p>
       <div style={{fontSize: '100px'}}>
         <span>{minutes}</span>:<span>{seconds}</span>

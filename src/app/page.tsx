@@ -20,7 +20,7 @@ const [currentInterval, setCurrentInterval] = useState<number>(1)
 
 
   return (
-  <div className="flex flex-col items-center bg-green-300 h-screen">
+  <div className="flex flex-col items-center bg-green-300 h-screen max-w-[90%]">
     <h1 className="text-center text-3xl m-5">AFLG Game Manager Tool</h1>
     {/* <NewGame buttonClick={buttonClick} setButtonClick={setButtonClick} /> */}
     <GameSetup setGameSetup={setGameSetup} gameSetup={gameSetup}/>
