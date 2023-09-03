@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
+import { Game } from '../page';
 
-export type TeamScore = {
-  goal: [{ scorer?: string; period?: number; time?: Date }];
+interface TeamScore {
+  goal: { scorer?: string; period?: number; time?: Date }[];
   behind: number;
 };
 
@@ -10,25 +11,29 @@ type Props = {
     gameSetup: Game
 }
 
+const initialState = {goal:[], behind: 0}
 
 
 function TeamScorer({gameSetup}: Props) {
-    const [teamAScore, setTeamAScore] = useState<number>(0)
-    const [teamBScore, setTeamBScore] = useState<number>(0)
-
-    const [teamAScoreObject, setTeamAScoreObject] = useState<TeamScore>()
+    
+    const [teamAScoreObject, setTeamAScoreObject] = useState<TeamScore>(initialState)
+    const [teamBScoreObject, setTeamBScoreObject] = useState<TeamScore>(initialState)
+    const totalScoreA:number = teamAScoreObject.behind + (teamAScoreObject.goal.length * 6) 
+    const totalScoreB:number = teamBScoreObject.behind + (teamBScoreObject.goal.length * 6) 
 
     function plusGoalTeamA(){
-        setTeamAScore(teamAScore + 6)
+        const nextArray: any = teamAScoreObject.goal.concat([{scorer: "Jack", period: 2}])
+        setTeamAScoreObject({goal: nextArray, behind:teamAScoreObject.behind})
     }
     function plusGoalTeamB(){
-        setTeamBScore(teamBScore + 6)
+        const nextArray: any = teamBScoreObject.goal.concat([{scorer: "Jill", period: 1}])
+        setTeamBScoreObject({goal: nextArray, behind:teamBScoreObject.behind})
     }
     function plusBehindTeamA(){
-        setTeamAScore(teamAScore + 1)
+        setTeamAScoreObject({goal: teamAScoreObject.goal, behind:teamAScoreObject.behind + 1})
     }
     function plusBehindTeamB(){
-        setTeamBScore(teamBScore + 1)
+        setTeamBScoreObject({goal: teamBScoreObject.goal, behind:teamBScoreObject.behind + 1})
     }
   return (
     <div className='flex justify-between'>
@@ -36,13 +41,13 @@ function TeamScorer({gameSetup}: Props) {
           <div className='text-xl font-bold'>{gameSetup.teamA}</div>
                 <div className='flex flex-row'><div> GOALS </div><div className='cursor-pointer' onClick={plusGoalTeamA}>+</div></div>
                 <div className='flex flex-row'><div> BEHINDS </div><div className='cursor-pointer' onClick={plusBehindTeamA}>+</div></div>
-                <div className='text-xl font-bold'>{teamAScore}</div>
+                <div className='text-xl font-bold'>{totalScoreA}</div>
         </div>
         <div className='flex flex-col items-center'>
           <div className='text-xl font-bold'>{gameSetup.teamB}</div>
                 <div className='flex flex-row'><div> GOALS </div><div className='cursor-pointer' onClick={plusGoalTeamB}>+</div></div>
                 <div className='flex flex-row'><div> BEHINDS </div><div className='cursor-pointer' onClick={plusBehindTeamB}>+</div></div>
-                <div className='text-xl font-bold'>{teamBScore}</div>
+                <div className='text-xl font-bold'>{totalScoreB}</div>
         </div>
           
     </div>
