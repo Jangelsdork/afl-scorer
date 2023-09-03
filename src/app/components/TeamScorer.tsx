@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import { Game } from '../page';
+import GoalScorerDisplay from './GoalScorerDisplay';
 
-interface TeamScore {
+
+export interface TeamScore {
   goal: { scorer?: string; period?: number; time?: Date }[];
   behind: number;
 };
@@ -42,6 +44,7 @@ function TeamScorer({gameSetup}: Props) {
                 <div className='flex flex-row'><div> GOALS </div><div className='cursor-pointer' onClick={plusGoalTeamA}>+</div></div>
                 <div className='flex flex-row'><div> BEHINDS </div><div className='cursor-pointer' onClick={plusBehindTeamA}>+</div></div>
                 <div className='text-xl font-bold'>{totalScoreA}</div>
+                <GoalScorerDisplay teamAScoreObject={teamAScoreObject}/>
         </div>
         <div className='flex flex-col items-center'>
           <div className='text-xl font-bold'>{gameSetup.teamB}</div>
