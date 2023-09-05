@@ -9,15 +9,19 @@ function GoalScorerDisplay({teamAScoreObject}: Props) {
     // Map over the length of the object and return an input for each 
     // If the name value exists, then return that. If not, return an input. 
 
-        function scorerName(line: any){
-            console.log(line)
+        function ScorerName(line: any){
+            teamAScoreObject.goal.map((line) => {
+            if(line.scorer){
+                return <div>{line.scorer}</div>
+            }
+            return <input></input>
+        }) 
         }
 
-        teamAScoreObject.goal.map(scorerName)
 
   return (
     <div>
-        <input type="text" />
+        <ScorerName />
     </div>
   )
 }
