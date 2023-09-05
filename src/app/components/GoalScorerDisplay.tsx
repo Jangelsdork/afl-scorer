@@ -6,22 +6,12 @@ type Props = {
 }
 
 function GoalScorerDisplay({teamAScoreObject}: Props) {
-    // Map over the length of the object and return an input for each 
-    // If the name value exists, then return that. If not, return an input. 
 
-        function ScorerName(line: any){
-            teamAScoreObject.goal.map((line) => {
-            if(line.scorer){
-                return <div>{line.scorer}</div>
-            }
-            return <input></input>
-        }) 
-        }
-
+        const goalScorer = teamAScoreObject.goal.map((line) => <li>{line.scorer}</li> )
 
   return (
     <div>
-        <ScorerName />
+        <ul>{goalScorer}</ul>
     </div>
   )
 }
