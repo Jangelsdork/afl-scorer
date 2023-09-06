@@ -7,7 +7,13 @@ type Props = {
 
 function GoalScorerDisplay({teamAScoreObject}: Props) {
 
-        const goalScorer = teamAScoreObject.goal.map((line) => <li>{line.scorer}</li> )
+        const goalScorer = teamAScoreObject.goal.map((line) =>  {
+        if(line.scorer){
+        return <li>{line.scorer}</li>
+        }
+        return <input></input>  
+      }
+      )
 
   return (
     <div>
