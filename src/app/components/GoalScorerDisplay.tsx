@@ -1,8 +1,13 @@
-import React from 'react'
-import { TeamScore } from './TeamScorer'
+import React, { MouseEvent } from 'react'
+import { TeamScore } from './TeamScorer' 
 
 type Props = {
     teamAScoreObject: TeamScore
+}
+
+function updateScorer(e: MouseEvent<HTMLButtonElement>){
+    e.preventDefault()
+
 }
 
 function GoalScorerDisplay({teamAScoreObject}: Props) {
@@ -11,7 +16,7 @@ function GoalScorerDisplay({teamAScoreObject}: Props) {
         if(line.scorer){
         return <li>{line.scorer}</li>
         }
-        return <input></input>  
+        return <div><input></input><button onClick={updateScorer}>Add</button></div>
       }
       )
 

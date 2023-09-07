@@ -24,7 +24,7 @@ function TeamScorer({gameSetup}: Props) {
     const totalScoreB:number = teamBScoreObject.behind + (teamBScoreObject.goal.length * 6) 
 
     function plusGoalTeamA(){
-        const nextArray: any = teamAScoreObject.goal.concat([{scorer: "Jack", period: 2}])
+        const nextArray: any = teamAScoreObject.goal.concat([{scorer: "", period: 2}])
         setTeamAScoreObject({goal: nextArray, behind:teamAScoreObject.behind})
     }
     function plusGoalTeamB(){
