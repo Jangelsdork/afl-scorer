@@ -7,6 +7,7 @@ import GoalScorerDisplay from './GoalScorerDisplay';
 export interface TeamScore {
   goal: { scorer?: string; period?: number; time?: Date }[];
   behind: number;
+  id: number;
 };
 
 type Props = {
@@ -25,7 +26,7 @@ function TeamScorer({gameSetup}: Props) {
 
     function plusGoalTeamA(){
         const nextArray: any = teamAScoreObject.goal.concat([{scorer: "", period: 2}])
-        setTeamAScoreObject({goal: nextArray, behind:teamAScoreObject.behind})
+        setTeamAScoreObject({goal: nextArray, behind:teamAScoreObject.behind, id:teamAScoreObject.goal.length})
     }
     function plusGoalTeamB(){
         const nextArray: any = teamBScoreObject.goal.concat([{scorer: "Jill", period: 1}])
@@ -44,7 +45,7 @@ function TeamScorer({gameSetup}: Props) {
                 <div className='flex flex-row'><div> GOALS </div><div className='cursor-pointer' onClick={plusGoalTeamA}>+</div></div>
                 <div className='flex flex-row'><div> BEHINDS </div><div className='cursor-pointer' onClick={plusBehindTeamA}>+</div></div>
                 <div className='text-xl font-bold'>{totalScoreA}</div>
-                <GoalScorerDisplay teamAScoreObject={teamAScoreObject}/>
+                <GoalScorerDisplay teamAScoreObject={teamAScoreObject} setTeamAScoreObject={setTeamAScoreObject} />
         </div>
         <div className='flex flex-col items-center'>
           <div className='text-xl font-bold'>{gameSetup.teamB}</div>
