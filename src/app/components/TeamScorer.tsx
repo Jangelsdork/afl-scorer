@@ -5,9 +5,8 @@ import GoalScorerDisplay from './GoalScorerDisplay';
 
 
 export interface TeamScore {
-  goal: { scorer?: string; period?: number; time?: Date }[];
+  goal: { scorer?: string; period?: number; time?: Date, id?: number; }[];
   behind: number;
-  id: number;
 };
 
 type Props = {
@@ -25,8 +24,8 @@ function TeamScorer({gameSetup}: Props) {
     const totalScoreB:number = teamBScoreObject.behind + (teamBScoreObject.goal.length * 6) 
 
     function plusGoalTeamA(){
-        const nextArray: any = teamAScoreObject.goal.concat([{scorer: "", period: 2}])
-        setTeamAScoreObject({goal: nextArray, behind:teamAScoreObject.behind, id:teamAScoreObject.goal.length})
+        const nextArray: any = teamAScoreObject.goal.concat([{scorer: "", period: 2, id:teamAScoreObject.goal.length}])
+        setTeamAScoreObject({goal: nextArray, behind:teamAScoreObject.behind})
     }
     function plusGoalTeamB(){
         const nextArray: any = teamBScoreObject.goal.concat([{scorer: "Jill", period: 1}])
