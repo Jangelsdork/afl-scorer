@@ -20,7 +20,7 @@ function GoalScorerDisplay({teamAScoreObject, setTeamAScoreObject}: Props) {
             id: newArray.id
         }
         setTeamAScoreObject({
-            goal: {newArray},
+            goal: newArray,
             behind: teamAScoreObject.behind
 
         })
