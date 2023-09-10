@@ -12,22 +12,32 @@ function GoalScorerDisplay({teamAScoreObject, setTeamAScoreObject}: Props) {
 
     function updateScorer(e: SyntheticEvent<HTMLFormElement>){
         e.preventDefault()
-        console.log(e.target.name.value)
-        console.log(e.target.id)
+        const newArray : Array = teamAScoreObject.goal
+        newArray[e.target.id] =  {
+            scorer: e.target.name.value, 
+            period: newArray.period, 
+            time: newArray.time, 
+            id: newArray.id
+        }
+        setTeamAScoreObject({
+            goal: {newArray},
+            behind: teamAScoreObject.behind
+
+        })
 
         // set a variable as the new model for team a score, set team a score object as the new object 
-        const newObject: object = teamAScoreObject
-        newObject.goal[e.target.id] e.target.name.value
-        console.log(newObject)
+        // const newObject: object = teamAScoreObject
+        // newObject.goal[e.target.id] e.target.name.value
+        // console.log(newObject)
         // you've thought about this wrong... ID should be linked to goal, not to the scorer object 
     }
-        const goalScorer = teamAScoreObject.goal.map((line) =>  {
+        const goalScorer = teamAScoreObject.goal.map((line, index) =>  {
         if(line.scorer){
-        return <li key={teamAScoreObject.id}>{line.scorer}</li>
+        return <li key={index}>{line.scorer}</li>
         }
         return (
-            <div key={teamAScoreObject.id} >
-                <form id={teamAScoreObject.id} onSubmit={updateScorer} >
+            <div key={index} >
+                <form id={index}  onSubmit={updateScorer} >
                  <input id="name" type='text' />
                  <input type='submit' />
                 </form>
