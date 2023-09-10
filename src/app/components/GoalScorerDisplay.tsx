@@ -9,7 +9,7 @@ type Props = {
 
 function GoalScorerDisplay({teamAScoreObject, setTeamAScoreObject}: Props) {
 
-
+// Adds the name from input into the goal array under scorer 
     function updateScorer(e: SyntheticEvent<HTMLFormElement>){
         e.preventDefault()
         const newArray : Array = teamAScoreObject.goal
@@ -25,21 +25,18 @@ function GoalScorerDisplay({teamAScoreObject, setTeamAScoreObject}: Props) {
 
         })
 
-        // set a variable as the new model for team a score, set team a score object as the new object 
-        // const newObject: object = teamAScoreObject
-        // newObject.goal[e.target.id] e.target.name.value
-        // console.log(newObject)
-        // you've thought about this wrong... ID should be linked to goal, not to the scorer object 
     }
+// loops through the goal array, if a scorer name exists, it's rendered. If not, 
         const goalScorer = teamAScoreObject.goal.map((line, index) =>  {
         if(line.scorer){
         return <li key={index}>{line.scorer}</li>
         }
         return (
             <div key={index} >
-                <form id={index}  onSubmit={updateScorer} >
-                 <input id="name" type='text' />
-                 <input type='submit' />
+                <form className='flex gap-2' id={index}  onSubmit={updateScorer} >
+                 <input className='bg-green-200 p-2' id="name" type='text' />
+                 <input className='bg-yellow-200 p-2' type='submit' />
+                 <button className='bg-yellow-200 p-2'>Delete</button>
                 </form>
             </div>
                 
