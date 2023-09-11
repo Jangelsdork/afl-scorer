@@ -10,22 +10,29 @@ type Props = {
 function GoalScorerDisplay({teamAScoreObject, setTeamAScoreObject}: Props) {
 
 // Adds the name from input into the goal array under scorer 
-    function updateScorer(e: SyntheticEvent<HTMLFormElement>){
-        e.preventDefault()
-        const newArray : Array = teamAScoreObject.goal
-        newArray[e.target.id] =  {
-            scorer: e.target.name.value, 
-            period: newArray.period, 
-            time: newArray.time, 
-            id: newArray.id
-        }
-        setTeamAScoreObject({
-            goal: newArray,
-            behind: teamAScoreObject.behind
+function updateScorer(e: SyntheticEvent<HTMLInputElement>) {
+    e.preventDefault();
 
-        })
+    if (!e.target) return;
 
+    const target = e.target as HTMLInputElement;
+    const id = target.id;
+    const name = target.name;
+
+    const newArray = [...teamAScoreObject.goal];
+
+    newArray[Number(id)] = {
+        scorer: name, 
+        period: newArray[Number(id)].period, 
+        time: newArray[Number(id)].time, 
+        id: newArray[Number(id)].id
     }
+
+    setTeamAScoreObject({
+        goal: newArray,
+        behind: teamAScoreObject.behind
+    });
+}
 // loops through the goal array, if a scorer name exists, it's rendered. If not, 
         const goalScorer = teamAScoreObject.goal.map((line, index) =>  {
         if(line.scorer){
