@@ -31,10 +31,18 @@ function GoalScorerDisplay({ teamAScoreObject, setTeamAScoreObject }: Props) {
       behind: teamAScoreObject.behind,
     });
   }
+
+  // make a function that removes the target index from the goal array 
+  function handleClick(e:SyntheticEvent<HTMLFormElement>){
+    // const targetIndex = e.target.id
+    // const newArray = teamAScoreObject.goal.spice(targetIndex, targetIndex)
+  }
+
   // loops through the goal array, if a scorer name exists, it's rendered. If not,
   const goalScorer = teamAScoreObject.goal.map((line, index) => {
     if (line.scorer) {
-      return <li key={index}>{line.scorer}</li>;
+      return <div className="flex gap-2 m-2"key={index}><li>{line.scorer}</li><button id={index} onClick={handleClick} className="bg-yellow-200 p-2">Delete</button>
+      </div>
     }
     return (
       <div key={index}>
@@ -46,7 +54,6 @@ function GoalScorerDisplay({ teamAScoreObject, setTeamAScoreObject }: Props) {
             type="text"
           />
           <input className="bg-yellow-200 p-2" type="submit" />
-          <button className="bg-yellow-200 p-2">Delete</button>
         </form>
       </div>
     );
