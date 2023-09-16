@@ -11,36 +11,51 @@ export interface TeamScore {
 
 type Props = {
   gameSetup: Game;
-  secondsLeft: number
-  currentInterval: number
-
+  secondsLeft: number;
+  currentInterval: number;
 };
 
 const initialState = { goal: [], behind: 0 };
 
-function TeamScorer({ gameSetup, secondsLeft, currentInterval}: Props) {
+function TeamScorer({ gameSetup, secondsLeft, currentInterval }: Props) {
+  // Object which holds the left column team's score info
   const [teamAScoreObject, setTeamAScoreObject] =
     useState<TeamScore>(initialState);
+  // Object which holds the right column team's score info
   const [teamBScoreObject, setTeamBScoreObject] =
     useState<TeamScore>(initialState);
+
+  // adds together the goals and behinds to give the total score of each team
   const totalScoreA: number =
     teamAScoreObject.behind + teamAScoreObject.goal.length * 6;
   const totalScoreB: number =
     teamBScoreObject.behind + teamBScoreObject.goal.length * 6;
 
+  // Updates the goal array with a new "Goal" object (blank scorer)
   function plusGoalTeamA() {
     const nextArray: any = teamAScoreObject.goal.concat([
-      { scorer: "", period: currentInterval, time: secondsLeft, id: teamAScoreObject.goal.length },
+      {
+        scorer: "",
+        period: currentInterval,
+        time: secondsLeft,
+        id: teamAScoreObject.goal.length,
+      },
     ]);
-    console.log(nextArray)
     setTeamAScoreObject({ goal: nextArray, behind: teamAScoreObject.behind });
   }
   function plusGoalTeamB() {
     const nextArray: any = teamBScoreObject.goal.concat([
-      { scorer: "Jill", period: 1 },
+      {
+        scorer: "",
+        period: currentInterval,
+        time: secondsLeft,
+        id: teamBScoreObject.goal.length,
+      },
     ]);
     setTeamBScoreObject({ goal: nextArray, behind: teamBScoreObject.behind });
   }
+  
+  // Adds a point to the "behind" score
   function plusBehindTeamA() {
     setTeamAScoreObject({
       goal: teamAScoreObject.goal,
@@ -90,6 +105,10 @@ function TeamScorer({ gameSetup, secondsLeft, currentInterval}: Props) {
           </div>
         </div>
         <div className="text-xl font-bold">{totalScoreB}</div>
+        <GoalScorerDisplay
+          teamAScoreObject={teamBScoreObject}
+          setTeamAScoreObject={setTeamBScoreObject}
+        />
       </div>
     </div>
   );
