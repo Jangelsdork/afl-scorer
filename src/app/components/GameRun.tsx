@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useState } from 'react'
 import { Game } from '../page'
 import Timer from './Timer'
 import TeamScorer from './TeamScorer'
@@ -15,15 +15,14 @@ const GameRun = ({gameSetup, setCurrentInterval, currentInterval}: Props) => {
     if(gameSetup){
       const lengthOfPeriod = gameSetup.length * 60;
       const time = new Date();
-      time.setSeconds(time.getSeconds() + lengthOfPeriod);
-      console.log(gameSetup)
-    
+      const [secondsLeft, setSecondsLeft] = useState<number>(0)
+      time.setSeconds(time.getSeconds() + lengthOfPeriod);    
 
     return (
     <div>
         <h1 className='text-center font-medium text-lg'>Q{currentInterval}</h1>
-        <Timer expiryTimestamp={time} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval} gameSetup={gameSetup}/>
-        <TeamScorer gameSetup={gameSetup}/>
+        <Timer expiryTimestamp={time} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval} gameSetup={gameSetup} setSecondsLeft={setSecondsLeft}/>
+        <TeamScorer gameSetup={gameSetup} secondsLeft={secondsLeft} currentInterval={currentInterval}/>
     </div>
   )
     }

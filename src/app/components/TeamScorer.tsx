@@ -2,19 +2,23 @@ import React from "react";
 import { useState } from "react";
 import { Game } from "../page";
 import GoalScorerDisplay from "./GoalScorerDisplay";
+import next from "next/types";
 
 export interface TeamScore {
-  goal: { scorer?: string; period: number; time?: Date; id?: number }[];
+  goal: { scorer?: string; period: number; time?: number; id?: number }[];
   behind: number;
 }
 
 type Props = {
   gameSetup: Game;
+  secondsLeft: number
+  currentInterval: number
+
 };
 
 const initialState = { goal: [], behind: 0 };
 
-function TeamScorer({ gameSetup }: Props) {
+function TeamScorer({ gameSetup, secondsLeft, currentInterval}: Props) {
   const [teamAScoreObject, setTeamAScoreObject] =
     useState<TeamScore>(initialState);
   const [teamBScoreObject, setTeamBScoreObject] =
@@ -26,8 +30,9 @@ function TeamScorer({ gameSetup }: Props) {
 
   function plusGoalTeamA() {
     const nextArray: any = teamAScoreObject.goal.concat([
-      { scorer: "", period: 2, id: teamAScoreObject.goal.length },
+      { scorer: "", period: currentInterval, time: secondsLeft, id: teamAScoreObject.goal.length },
     ]);
+    console.log(nextArray)
     setTeamAScoreObject({ goal: nextArray, behind: teamAScoreObject.behind });
   }
   function plusGoalTeamB() {

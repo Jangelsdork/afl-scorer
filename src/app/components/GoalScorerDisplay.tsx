@@ -19,29 +19,28 @@ function GoalScorerDisplay({ teamAScoreObject, setTeamAScoreObject }: Props) {
 
     console.log(id, name);
 
+    // This is the array that will be added to the score object once the user has input the scorer name. 
     const newArray = teamAScoreObject.goal;
     newArray[id] = {
       scorer: name,
-      period: newArray.period,
-      time: newArray.time,
-      id: newArray.id,
+      period: newArray[id].period,
+      time: newArray[id].time,
+      id: newArray[id].id,
     };
+    console.log(newArray)
+
     setTeamAScoreObject({
       goal: newArray,
       behind: teamAScoreObject.behind,
     });
   }
 
-  // make a function that removes the target index from the goal array 
-  function handleClick(e:SyntheticEvent<HTMLFormElement>){
-    // const targetIndex = e.target.id
-    // const newArray = teamAScoreObject.goal.spice(targetIndex, targetIndex)
-  }
+  
 
   // loops through the goal array, if a scorer name exists, it's rendered. If not,
   const goalScorer = teamAScoreObject.goal.map((line, index) => {
     if (line.scorer) {
-      return <div className="flex gap-2 m-2"key={index}><li>{line.scorer}</li><button id={index} onClick={handleClick} className="bg-yellow-200 p-2">Delete</button>
+      return <div className="flex gap-2 m-2"key={index}><li>Goal Scorer {index+1}: {line.scorer}, Time: {Math.trunc(line.time/60)}:{line.time%60} remaining, Period: {line.period}</li>
       </div>
     }
     return (
@@ -52,6 +51,7 @@ function GoalScorerDisplay({ teamAScoreObject, setTeamAScoreObject }: Props) {
             className="bg-green-200 p-2"
             id="name"
             type="text"
+            placeholder="Goal scorer name..."
           />
           <input className="bg-yellow-200 p-2" type="submit" />
         </form>

@@ -1,25 +1,26 @@
+import React, { useState } from "react";
 import { useTimer } from "react-timer-hook";
 import { Game } from "../page";
-import React from "react";
 
 type Props = {
     expiryTimestamp: Date;
     setCurrentInterval: React.Dispatch<React.SetStateAction<number>>;
     currentInterval: number;
     gameSetup: Game
+    setSecondsLeft : React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function Timer({ expiryTimestamp, setCurrentInterval, currentInterval, gameSetup } : Props) {
+export default function Timer({ expiryTimestamp, setCurrentInterval, setSecondsLeft, currentInterval, gameSetup } : Props) {
+    const [hasStarted, setHasStarted] = useState<boolean>(false)
     const lengthOfPeriod : number = gameSetup.length * 60; 
     const time = new Date();
         time.setSeconds(time.getSeconds() + lengthOfPeriod);
-    console.log(lengthOfPeriod)
   const {
     totalSeconds,
     seconds,
     minutes,
-    hours,
-    days,
+    // hours,
+    // days,
     isRunning,
     start,
     pause,
@@ -30,7 +31,24 @@ export default function Timer({ expiryTimestamp, setCurrentInterval, currentInte
     restart(time)
  }
  });
+ setSecondsLeft(totalSeconds)
 
+
+
+ // Hides start button when timer is running. Important to prevent bug when "Start" is used rather than "Pause"
+ function StartButton() : JSX.Element {
+  if(!hasStarted){
+    return <button 
+    className="bg-yellow-300 m-1 p-1 cursor-pointer" 
+    onClick={()=>{
+      start();
+      setHasStarted(true)
+    }}>
+      Start
+      </button>
+  }
+  <div></div>
+ }
 
   return (
     <div className="text-center">
@@ -39,7 +57,7 @@ export default function Timer({ expiryTimestamp, setCurrentInterval, currentInte
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <p>{isRunning ? 'Running' : 'Not running'}</p>
-      <button className="bg-yellow-300 m-1 p-1 cursor-pointer" onClick={start}>Start</button>
+      <StartButton />
       <button className="bg-yellow-300 m-1 p-1 cursor-pointer" onClick={pause}>Pause</button>
       <button className="bg-yellow-300 m-1 p-1 cursor-pointer" onClick={resume}>Resume</button>
     </div>
