@@ -52,7 +52,7 @@ export default function Timer({ expiryTimestamp, setCurrentInterval, setSecondsL
 
   return (
     <div className="text-center">
-      <p>Time remaining in period:</p>
+      <p>Time remaining in quarter:</p>
       <div style={{fontSize: '100px'}}>
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>

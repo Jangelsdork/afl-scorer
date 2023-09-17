@@ -41,18 +41,16 @@ function GoalScorerDisplay({
   // not sure why this works for team b... even though it's mapping over team A scores... 
   const goalScorer = teamAScoreObject.goal.map((line, index) => {
     if (line.scorer) {
-      return (
-        <div className="flex gap-2 m-2" key={index}>
-          <li className="gap-2">
-            Goal Scorer {index + 1}: {line.scorer}, Time:{" "}
-            {Math.trunc(line.time / 60)}:{line.time % 60} remaining, Period:{" "}
-            {line.period}
-          </li>
-        </div>
-      );
+        return (
+            <div className="flex gap-2 m-2" key={index}>
+              <li className="gap-2">Scored by {line.scorer}, with {" "}
+                {Math.trunc(line.time / 60)}:{line.time % 60} remaining in Q{line.period}
+              </li>
+            </div>
+          );
     }
     return (
-        <div key={index}>
+        <div className="mt-1" key={index}>
           <form className="flex gap-2" id={index} onSubmit={updateScorer}>
             <input
               ref={inputRef} // Ref is attached to the input element

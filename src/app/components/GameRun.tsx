@@ -20,7 +20,7 @@ const GameRun = ({gameSetup, setCurrentInterval, currentInterval}: Props) => {
 
     return (
     <div className='w-full'>
-        <h1 className='text-center font-medium text-lg'>Q{currentInterval}</h1>
+        <h1 className='text-center font-medium text-[40px]'>Q{currentInterval}</h1>
         <Timer className="bg-black" expiryTimestamp={time} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval} gameSetup={gameSetup} setSecondsLeft={setSecondsLeft}/>
         <TeamScorer gameSetup={gameSetup} secondsLeft={secondsLeft} currentInterval={currentInterval}/>
     </div>

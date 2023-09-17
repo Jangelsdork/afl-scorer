@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { Game } from "../page";
 import GoalScorerDisplay from "./GoalScorerDisplay";
 import GoalScorerDisplayB from "./GoalScorerDisplayB";
 import next from "next/types";
@@ -72,38 +71,36 @@ function TeamScorer({ gameSetup, secondsLeft, currentInterval }: Props) {
   return (
     <div className="grid grid-cols-2 mt-10">
       <div className="flex flex-col items-center">
-        <div className="text-xl font-bold">{gameSetup.teamA}</div>
+        <div className="text-[30px] font-bold">{gameSetup.teamA}</div>
         <div className="flex flex-row">
-          {/* <div> GOALS </div> */}
           <button className="cursor-pointer bg-indigo-600 p-3 m-2 rounded-3xl" onClick={plusGoalTeamA}>
             ADD GOAL
           </button>
-          {/* <div> BEHINDS </div> */}
           <button className="cursor-pointer  bg-indigo-600 p-3 m-2  rounded-3xl" onClick={plusBehindTeamA}>
             ADD BEHIND
           </button>
         </div>
-        <div className="text-xl font-bold">{totalScoreA}</div>
+        <div className="text-xl">{teamAScoreObject.goal.length}.{teamAScoreObject.behind}</div>
+        <div className="text-[80px]">{totalScoreA}</div>
+        <div className="text-xl font-bold">Goals:</div>
         <GoalScorerDisplay
           teamAScoreObject={teamAScoreObject}
           setTeamAScoreObject={setTeamAScoreObject}
         />
       </div>
       <div className="flex flex-col items-center">
-        <div className="text-xl font-bold">{gameSetup.teamB}</div>
+      <div className="text-[30px] font-bold">{gameSetup.teamB}</div>
         <div className="flex flex-row">
-          <div> GOALS </div>
-          <div className="cursor-pointer" onClick={plusGoalTeamB}>
-            +
-          </div>
+          <button className="cursor-pointer bg-indigo-600 p-3 m-2 rounded-3xl" onClick={plusGoalTeamB}>
+            ADD GOAL
+          </button>
+          <button className="cursor-pointer  bg-indigo-600 p-3 m-2  rounded-3xl" onClick={plusBehindTeamB}>
+            ADD BEHIND
+          </button>
         </div>
-        <div className="flex flex-row">
-          <div> BEHINDS </div>
-          <div className="cursor-pointer" onClick={plusBehindTeamB}>
-            +
-          </div>
-        </div>
-        <div className="text-xl font-bold">{totalScoreB}</div>
+        <div className="text-xl">{teamBScoreObject.goal.length}.{teamBScoreObject.behind}</div>
+        <h1 className="text-[80px]">{totalScoreB}</h1>
+        <div className="text-xl font-bold">Goals:</div>
         <GoalScorerDisplayB
           teamBScoreObject={teamBScoreObject}
           setTeamBScoreObject={setTeamBScoreObject}
