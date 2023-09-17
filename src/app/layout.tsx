@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className='text-emerald-100'>
       <body className={inter.className}>{children}</body>
     </html>
   )

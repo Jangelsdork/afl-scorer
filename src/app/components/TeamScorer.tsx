@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Game } from "../page";
 import GoalScorerDisplay from "./GoalScorerDisplay";
+import GoalScorerDisplayB from "./GoalScorerDisplayB";
 import next from "next/types";
 
 export interface TeamScore {
@@ -69,20 +70,18 @@ function TeamScorer({ gameSetup, secondsLeft, currentInterval }: Props) {
     });
   }
   return (
-    <div className="flex justify-between">
+    <div className="grid grid-cols-2 mt-10">
       <div className="flex flex-col items-center">
         <div className="text-xl font-bold">{gameSetup.teamA}</div>
         <div className="flex flex-row">
-          <div> GOALS </div>
-          <div className="cursor-pointer" onClick={plusGoalTeamA}>
-            +
-          </div>
-        </div>
-        <div className="flex flex-row">
-          <div> BEHINDS </div>
-          <div className="cursor-pointer" onClick={plusBehindTeamA}>
-            +
-          </div>
+          {/* <div> GOALS </div> */}
+          <button className="cursor-pointer bg-indigo-600 p-3 m-2 rounded-3xl" onClick={plusGoalTeamA}>
+            ADD GOAL
+          </button>
+          {/* <div> BEHINDS </div> */}
+          <button className="cursor-pointer  bg-indigo-600 p-3 m-2  rounded-3xl" onClick={plusBehindTeamA}>
+            ADD BEHIND
+          </button>
         </div>
         <div className="text-xl font-bold">{totalScoreA}</div>
         <GoalScorerDisplay
@@ -105,9 +104,9 @@ function TeamScorer({ gameSetup, secondsLeft, currentInterval }: Props) {
           </div>
         </div>
         <div className="text-xl font-bold">{totalScoreB}</div>
-        <GoalScorerDisplay
-          teamAScoreObject={teamBScoreObject}
-          setTeamAScoreObject={setTeamBScoreObject}
+        <GoalScorerDisplayB
+          teamBScoreObject={teamBScoreObject}
+          setTeamBScoreObject={setTeamBScoreObject}
         />
       </div>
     </div>

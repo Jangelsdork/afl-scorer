@@ -39,7 +39,7 @@ export default function Timer({ expiryTimestamp, setCurrentInterval, setSecondsL
  function StartButton() : JSX.Element {
   if(!hasStarted){
     return <button 
-    className="bg-yellow-300 m-1 p-1 cursor-pointer" 
+    className="bg-indigo-600 m-1 p-2 cursor-pointer rounded-3xl	" 
     onClick={()=>{
       start();
       setHasStarted(true)
@@ -58,8 +58,8 @@ export default function Timer({ expiryTimestamp, setCurrentInterval, setSecondsL
       </div>
       <p>{isRunning ? 'Running' : 'Not running'}</p>
       <StartButton />
-      <button className="bg-yellow-300 m-1 p-1 cursor-pointer" onClick={pause}>Pause</button>
-      <button className="bg-yellow-300 m-1 p-1 cursor-pointer" onClick={resume}>Resume</button>
+      <button className="bg-indigo-600 m-1 p-2 cursor-pointer rounded-3xl	" onClick={pause}>Pause</button>
+      <button className="bg-indigo-600 m-1 p-2 cursor-pointer rounded-3xl	" onClick={resume}>Resume</button>
     </div>
   );
 }

@@ -2,13 +2,13 @@ import React, { SyntheticEvent, Dispatch, useState } from "react";
 import { TeamScore } from "./TeamScorer";
 
 type Props = {
-  teamAScoreObject: TeamScore;
-  setTeamAScoreObject: Dispatch<React.SetStateAction<TeamScore>>;
+  teamBScoreObject: TeamScore;
+  setTeamBScoreObject: Dispatch<React.SetStateAction<TeamScore>>;
 };
 
 function GoalScorerDisplay({
-  teamAScoreObject,
-  setTeamAScoreObject,
+  teamBScoreObject,
+  setTeamBScoreObject,
 }: Props) {
   const inputRef = React.createRef<HTMLInputElement>();
 
@@ -23,7 +23,7 @@ function GoalScorerDisplay({
 
     // This is the array that will be added to the score object once the user has input the scorer name. Only triggers if the object exists (enables the component to be reused for each team)
 
-      const newArrayA = teamAScoreObject.goal;
+      const newArrayA = teamBScoreObject.goal;
       newArrayA[id] = {
         scorer: name,
         period: newArrayA[id].period,
@@ -31,15 +31,15 @@ function GoalScorerDisplay({
         id: newArrayA[id].id,
       };
 
-      setTeamAScoreObject({
+      setTeamBScoreObject({
         goal: newArrayA,
-        behind: teamAScoreObject.behind,
+        behind: teamBScoreObject.behind,
       });
 
   }
   // loops through the goal array, if a scorer name exists, it's rendered. If not,
   // not sure why this works for team b... even though it's mapping over team A scores... 
-  const goalScorer = teamAScoreObject.goal.map((line, index) => {
+  const goalScorer = teamBScoreObject.goal.map((line, index) => {
     if (line.scorer) {
       return (
         <div className="flex gap-2 m-2" key={index}>
@@ -52,28 +52,27 @@ function GoalScorerDisplay({
       );
     }
     return (
-        <div key={index}>
-          <form className="flex gap-2" id={index} onSubmit={updateScorer}>
-            <input
-              ref={inputRef} // Ref is attached to the input element
-              className="bg-indigo-500 p-2"
-              id="name"
-              type="text"
-              placeholder="Goal scorer name..."
-            />
-            <input className="bg-indigo-600 p-2 rounded-3xl" type="submit" />
-          </form>
-        </div>
-      );
-    });
-  
-  
-    return (
-      <div>
-        <ul>{goalScorer}</ul>
+      <div key={index}>
+        <form className="flex gap-2" id={index} onSubmit={updateScorer}>
+          <input
+            ref={inputRef} // Ref is attached to the input element
+            className="bg-indigo-500 p-2"
+            id="name"
+            type="text"
+            placeholder="Goal scorer name..."
+          />
+          <input className="bg-indigo-600 p-2 rounded-3xl" type="submit" />
+        </form>
       </div>
     );
-  }
-  
-  export default GoalScorerDisplay;
-  
+  });
+
+
+  return (
+    <div>
+      <ul>{goalScorer}</ul>
+    </div>
+  );
+}
+
+export default GoalScorerDisplay;

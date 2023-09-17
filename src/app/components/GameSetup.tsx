@@ -23,15 +23,11 @@ function GameSetup({ setGameSetup, gameSetup }: Props) {
 
   if (!gameSetup) {
     return (
-      <div>
-        <form className="flex flex-col gap-2" action="" onSubmit={handleSubmit}>
+      <div className="w-[60%]">
+        <form className="flex flex-col gap-4 "   onSubmit={handleSubmit}>
           <div className="">
-            {/* <label htmlFor="quarters">Quarters</label>
-        <input type="radio" name="periods" />
-        <label htmlFor="Halves">Halves</label>
-        <input type="radio" name="periods"/> */}
             <label htmlFor="periods">Intervals:</label>
-            <select id="periods" name="periods">
+            <select className="bg-indigo-500 ml-2" id="periods" name="periods">
               <option name="periods" value="2">
                 Halves
               </option>
@@ -40,16 +36,17 @@ function GameSetup({ setGameSetup, gameSetup }: Props) {
               </option>
             </select>
           </div>
-          <label htmlFor="duration">Minutes per period</label>
-          <input type="number" name="duration" />
+          <label htmlFor="duration">Minutes per period:</label>
+          <input className="bg-indigo-500 " type="number" name="duration" />
           <label htmlFor="teamA">Team A:</label>
-          <input type="text" name="teamA" />
+          <input className="bg-indigo-500" type="text" name="teamA" />
           <label htmlFor="teamB">Team B:</label>
-          <input type="text" name="teamB" />
+          <input className="bg-indigo-500" type="text" name="teamB" />
           <input
             type="submit"
             value="Submit"
-            className="border-2 cursor-pointer"
+            className="bg-indigo-600 p-2 rounded-3xl cursor-pointer mt-10"
+  
           />
         </form>
       </div>
