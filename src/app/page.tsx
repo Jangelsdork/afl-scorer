@@ -19,7 +19,7 @@ const [currentInterval, setCurrentInterval] = useState<number>(1)
 
 
   return (
-  <div className="flex flex-col items-center bg-indigo-900 h-screen w-screen">
+  <div className="flex flex-col items-center bg-indigo-900  w-screen">
     <h1 className="text-center text-4xl m-5 ">AFL Scorekeeper Tool</h1>
     <GameSetup setGameSetup={setGameSetup} gameSetup={gameSetup}/>
     <GameRun gameSetup={gameSetup} setCurrentInterval={setCurrentInterval} currentInterval={currentInterval}/>

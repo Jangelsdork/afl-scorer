@@ -1,8 +1,7 @@
-import React from "react";
 import { useState } from "react";
 import GoalScorerDisplay from "./GoalScorerDisplay";
 import GoalScorerDisplayB from "./GoalScorerDisplayB";
-import next from "next/types";
+import { Game } from "../page";
 
 export interface TeamScore {
   goal: { scorer?: string; period: number; time?: number; id?: number }[];

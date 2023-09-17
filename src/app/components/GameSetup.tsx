@@ -10,8 +10,7 @@ type Props = {
 function GameSetup({ setGameSetup, gameSetup }: Props) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(e.target.periods.value);
-
+// sets state that carries the game information (teams, duration, etc) 
     setGameSetup({
       periods: e.target.periods.value,
       length: e.target.duration.value,
@@ -20,10 +19,10 @@ function GameSetup({ setGameSetup, gameSetup }: Props) {
     });
     console.log(gameSetup);
   }
-
+// renders form that asks user for the game information (teams, duration etc)
   if (!gameSetup) {
     return (
-      <div className="w-[60%]">
+      <div className="w-[60%] h-screen" >
         <form className="flex flex-col gap-4 "   onSubmit={handleSubmit}>
           <div className="">
             <label htmlFor="periods">Intervals:</label>

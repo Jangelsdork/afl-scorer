@@ -37,8 +37,7 @@ function GoalScorerDisplay({
       });
 
   }
-  // loops through the goal array, if a scorer name exists, it's rendered. If not,
-  // not sure why this works for team b... even though it's mapping over team A scores... 
+  // loops through the goal array, if a scorer name exists, it's rendered. If not, an input is returned to add player 
   const goalScorer = teamBScoreObject.goal.map((line, index) => {
     if (line.scorer) {
       return (
