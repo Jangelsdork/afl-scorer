@@ -1,57 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 import { Game } from "../page";
-import { FormEvent } from "react";
 
 type Props = {
-  gameSetup: Game;
-  setGameSetup: React.Dispatch<React.SetStateAction<Game>>;
+  gameSetup: Game | undefined;
+  setGameSetup: React.Dispatch<React.SetStateAction<Game | undefined>>;
 };
 
-function GameSetup({ setGameSetup, gameSetup }: Props) {
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-// sets state that carries the game information (teams, duration, etc) 
-    setGameSetup({
-      periods: e.target.periods.value,
-      length: e.target.duration.value,
-      teamA: e.target.teamA.value,
-      teamB: e.target.teamB.value,
-    });
-    console.log(gameSetup);
+function GameSetup({ setGameSetup }: Props) {
+  const [formData, setFormData] = useState({
+    periods: 2,
+    duration: 10,
+    teamA: "",
+    teamB: "",
+  });
+
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   }
-// renders form that asks user for the game information (teams, duration etc)
-  if (!gameSetup) {
-    return (
-      <div className="w-[60%] h-screen" >
-        <form className="flex flex-col gap-4 "   onSubmit={handleSubmit}>
-          <div className="">
-            <label htmlFor="periods">Intervals:</label>
-            <select className="bg-indigo-500 ml-2" id="periods" name="periods">
-              <option name="periods" value="2">
-                Halves
-              </option>
-              <option name="periods" value="4">
-                Quarters
-              </option>
-            </select>
-          </div>
-          <label htmlFor="duration">Minutes per period:</label>
-          <input className="bg-indigo-500 " type="number" name="duration" />
-          <label htmlFor="teamA">Team A:</label>
-          <input className="bg-indigo-500" type="text" name="teamA" />
-          <label htmlFor="teamB">Team B:</label>
-          <input className="bg-indigo-500" type="text" name="teamB" />
-          <input
-            type="submit"
-            value="Submit"
-            className="bg-indigo-600 p-2 rounded-3xl cursor-pointer mt-10"
-  
-          />
-        </form>
-      </div>
-    );
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setGameSetup(formData);
+    console.log(formData);
   }
-  <div></div>;
+
+  return (
+    <div className="w-[60%] h-screen">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="periods">Intervals:</label>
+          <select
+            className="bg-indigo-500 ml-2"
+            id="periods"
+            name="periods"
+            value={formData.periods}
+            onChange={handleChange}
+          >
+            <option value="2">Halves</option>
+            <option value="4">Quarters</option>
+          </select>
+        </div>
+        <label htmlFor="duration">Minutes per period:</label>
+        <input
+          className="bg-indigo-500"
+          type="number"
+          name="duration"
+          value={formData.duration}
+          onChange={handleChange}
+        />
+        <label htmlFor="teamA">Team A:</label>
+        <input
+          className="bg-indigo-500"
+          type="text"
+          name="teamA"
+          value={formData.teamA}
+          onChange={handleChange}
+        />
+        <label htmlFor="teamB">Team B:</label>
+        <input
+          className="bg-indigo-500"
+          type="text"
+          name="teamB"
+          value={formData.teamB}
+          onChange={handleChange}
+        />
+        <input
+          type="submit"
+          value="Submit"
+          className="bg-indigo-600 p-2 rounded-3xl cursor-pointer mt-10"
+        />
+      </form>
+    </div>
+  );
 }
 
 export default GameSetup;
