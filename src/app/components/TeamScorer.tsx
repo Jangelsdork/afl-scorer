@@ -67,7 +67,7 @@ function TeamScorer({ gameSetup, secondsLeft, currentInterval }: Props) {
     });
   }
   return (
-    <div className="grid grid-cols-2 mt-10">
+    <div className="grid grid-cols-2 mt-10" >
       <div className="flex flex-col items-center">
         <div className="text-[30px] font-bold">{gameSetup.teamA}</div>
         <div className="flex flex-row">

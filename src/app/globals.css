@@ -8,6 +8,6 @@
 
 }
 
-body {
-
+body { 
+    @apply h-[100vh] bg-indigo-900
 }
