@@ -38,7 +38,7 @@ function GoalScorerDisplay({ teamScoreObject, setTeamScoreObject }: Props) {
     if (line.scorer) {
       return (
         <div className="flex gap-2 m-2" key={index}>
-          <li className="gap-2">
+          <li className="gap-2 text-center">
             Scored by {line.scorer}, with {Math.trunc(line.time / 60)}:
             {line.time % 60} remaining in Q{line.period}
           </li>
@@ -46,20 +46,20 @@ function GoalScorerDisplay({ teamScoreObject, setTeamScoreObject }: Props) {
       );
     }
     return (
-      <div className="mt-1" key={index}>
+      <div className="mt-1 max-w-[40vw]" key={index}>
         <form
-          className="flex gap-2"
+          className="flex flex-col sm:flex-row gap-2"
           id={index.toString()}
           onSubmit={updateScorer}
         >
           <input
             ref={inputRef} // Ref is attached to the input element
-            className="bg-indigo-500 p-2"
+            className="bg-indigo-500 p-2 "
             id="name"
             type="text"
             placeholder="Goal scorer name..."
           />
-          <input className="bg-indigo-600 p-2 rounded-3xl" type="submit" />
+          <input className="bg-indigo-600 p-2 rounded-3xl " type="submit" />
         </form>
       </div>
     );

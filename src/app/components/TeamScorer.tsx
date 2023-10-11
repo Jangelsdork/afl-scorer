@@ -72,13 +72,13 @@ function TeamScorer({ gameSetup, secondsLeft, currentInterval }: Props) {
         <div className="text-[30px] font-bold">{gameSetup.teamA}</div>
         <div className="flex flex-row">
           <button
-            className="cursor-pointer bg-indigo-600 p-3 m-2 rounded-3xl"
+            className="cursor-pointer bg-indigo-600 p-3 m-2 rounded-3xl text-xs sm:text-lg"
             onClick={plusGoalTeamA}
           >
             ADD GOAL
           </button>
           <button
-            className="cursor-pointer  bg-indigo-600 p-3 m-2  rounded-3xl"
+            className="cursor-pointer  bg-indigo-600 p-3 m-2  rounded-3xl text-xs sm:text-lg"
             onClick={plusBehindTeamA}
           >
             ADD BEHIND
@@ -98,13 +98,13 @@ function TeamScorer({ gameSetup, secondsLeft, currentInterval }: Props) {
         <div className="text-[30px] font-bold">{gameSetup.teamB}</div>
         <div className="flex flex-row">
           <button
-            className="cursor-pointer bg-indigo-600 p-3 m-2 rounded-3xl"
+            className="cursor-pointer bg-indigo-600 p-3 m-2 rounded-3xl text-xs sm:text-lg"
             onClick={plusGoalTeamB}
           >
             ADD GOAL
           </button>
           <button
-            className="cursor-pointer  bg-indigo-600 p-3 m-2  rounded-3xl"
+            className="cursor-pointer  bg-indigo-600 p-3 m-2  rounded-3xl text-xs sm:text-lg"
             onClick={plusBehindTeamB}
           >
             ADD BEHIND
